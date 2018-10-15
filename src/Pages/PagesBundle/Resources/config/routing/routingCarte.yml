@@ -1,0 +1,3 @@
+cartePages:
+  path:     /
+  defaults: { _controller: "PagesBundle:Carte:index" }

@@ -1,0 +1,14 @@
+{% extends '::layout/layout-administration.html.twig' %}
+
+{% block body %}
+    <h1>Pages modification</h1>
+
+    {{ form(edit_form) }}
+
+        <a class="button alt" style="margin-top:10px;display: inline-block; float: left;" href="{{ path('adminPages') }}">
+            Retour à la liste des pages
+        </a>
+
+    {{ form(delete_form) }}
+
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends "::layout/layout.html.twig" %}
+
+{% block titre %}liste des produits{% endblock %}
+
+
+{% block description %}{% endblock %}
+
+
+{% block body %}
+
+<div class="col-12 col-12-medium imp-medium">
+    {% for type,content in app.session.getflashbag.get('success') %}
+        <div class="alert alert-success">{{ content }}</div>
+    {% endfor %}
+    <div class="row">
+        {% if produits is empty %}
+            <h4>Désolé mais il n'y a pas de produits</h4>
+        {% else %}
+        
+        {% for row in produits|batch(3) %}
+            <div class="card-deck">
+            {% for produit in row %}
+                <!-- Content -->
+                <div class="card-box card">
+                    <img class="card-img-top" src="{{ asset('uploads/images/' ~ produit.image.path) }}" alt="{{ produit.image.alt }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ produit.nom }}</h5>
+                        <p class="card-text">{{ produit.prix }} €/kg</p>
+                    </div>
+                    <div class="card-footer">
+                        <a class="button alt" href="{{ path('presentation',{id:produit.id}) }}">Plus d'infos</a>
+                        {% if panier[produit.id] is not defined %}
+                            <a id="ajouter" class="button" href="{{ path('ajouter',{id: produit.id }) }}">Ajouter au panier</a>
+                        {% else %}
+                            <a id="ajouter" class="button" href="{{ path('panier') }}">Déja dans le panier</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        {% endfor %}
+        
+        {% if categorie != null %}
+
+        <div style="margin: auto;" class="pagination-container wow zoomIn mar-b-1x" data-wow-duration="0.5s">
+
+            <ul class="card-box pagination">
+            {% if pageExistPrevious(page) %}
+                <li class="pagination-item--wide first"> <a class="pagination-link--wide first" href="{{ path('categorieProduits',{ categorie: categorie.id }) }}?p={{ page -1 }}">Précédent</a> </li>
+            {% else %}
+                <li class="pagination-item--wide first"><span class="pagination-link--wide first">Précédent</span> </li>
+            {% endif %}
+            {% for i in range(1,NbTotalPage) %}
+                {% if page == i %}
+                    <li class="pagination-item is-active"> <span class="pagination-link" >{{ i }}</span> </li>
+                {% else %}
+                    <li class="pagination-item"> <a class="pagination-link" href="{{ path('categorieProduits',{ categorie: categorie.id }) }}?p={{ i }}">{{ i }}</a> </li>
+                {% endif %}
+            {% endfor%}
+            {% if pageExistNext(page,NbTotalPage) %}
+                <li class="pagination-item--wide last"> <a class="pagination-link--wide last" href="{{ path('categorieProduits',{ categorie: categorie.id }) }}?p={{ page +1 }}">Suivant</a> </li>
+            {% else %}
+                <li class="pagination-item--wide last"> <span class="pagination-link--wide last">Suivant</span></li>
+            {% endif %}
+            </ul>
+
+        </div>
+
+        {% else %}
+        
+        <div style="margin: auto;" class="pagination-container wow zoomIn mar-b-1x" data-wow-duration="0.5s">
+
+            <ul class="card-box pagination">
+            {% if pageExistPrevious(page) %}
+                <li class="pagination-item--wide first"> <a class="pagination-link--wide first" href="{{ path('produits') }}?p={{ page -1 }}">Précédent</a> </li>
+            {% else %}
+                <li class="pagination-item--wide first"><span class="pagination-link--wide first">Précédent</span> </li>
+            {% endif %}
+            {% for i in range(1,NbTotalPage) %}
+
+                {% if page == i %}
+                    <li class="pagination-item is-active"> <span class="pagination-link">{{ i }}</span> </li>
+                {% else %}
+                    <li class="pagination-item"> <a class="pagination-link" href="{{ path('produits') }}?p={{ i }}">{{ i }}</a> </li>
+                {% endif %}
+            
+            {% endfor%}
+            {% if pageExistNext(page,NbTotalPage) %}
+                <li class="pagination-item--wide last"> <a class="pagination-link--wide last" href="{{ path('produits') }}?p={{ page +1 }}">Suivant</a> </li>
+            {% else %}
+                <li class="pagination-item--wide last"> <span class="pagination-link--wide last">Suivant</span></li>
+            {% endif %}
+            </ul>
+
+        </div>
+        
+        <!--endif si il y a une categorie-->
+        {% endif %}
+        <!--endif de produits-->
+        {% endif %}
+        
+    </div>    
+</div>
+
+	{% endblock %}
+
+
+                            
+                            

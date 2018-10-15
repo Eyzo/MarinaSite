@@ -1,0 +1,58 @@
+#payment-menu
+{
+	padding: 0px 15px; 
+	border:1px solid black;
+}
+
+#payment-text
+{
+	text-align: center;
+}
+
+#payment-block
+{
+	width: 100%;
+}
+
+#payment-form-label
+{
+	display:inline-block; 
+	width: 30%;
+}
+
+#payment-form-text
+{
+	width: 65%;
+}
+
+#payment-form-select
+{
+	width: 30%;
+}
+
+#payment-form-p
+{
+	font-size:x-small;
+	display:inline-block;
+	width: 30%;
+	line-height: 10px;
+	margin-left: 5px;
+}
+
+#payment-form-submit
+{
+	padding: 4px 0px;
+	width:40%; 
+	float:right;
+}
+
+#payment-form-retour
+{
+	 padding: 4px 0px; 
+	 width:40%;
+}
+
+#payment-form-crypto
+{
+	width: 30%;
+}

@@ -1,0 +1,11 @@
+admin_utilisateurs:
+  path: /
+  defaults: { _controller: "UtilisateursBundle:UtilisateursAdmin:index" }
+
+admin_utilisateurs_adresses:
+  path: /{id}/adresses
+  defaults: { _controller: "UtilisateursBundle:UtilisateursAdmin:utilisateur" }
+
+admin_utilisateurs_factures:
+  path: /{id}/factures
+  defaults: { _controller: "UtilisateursBundle:UtilisateursAdmin:utilisateur" }

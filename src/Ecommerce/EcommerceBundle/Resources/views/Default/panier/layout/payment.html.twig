@@ -1,0 +1,40 @@
+                        <form action="{{ path('validationCommande',{ id: commande.id }) }}" method="POST" id="payment-form" />
+                        
+                        <input name="token" type="hidden" value="{{ commande.commande.token }}" />
+
+                        
+                        <div id="payment-block">
+
+                        <label id="payment-form-label">Titulaire de la carte :</label><input id="payment-form-text" type="text" required />
+                        </div>
+                        
+                        <div id="payment-block">
+                        <label id="payment-form-label">Numéro de carte :</label><input type="text" maxlength="16" id="payment-form-text" required />
+                        </div>
+
+                        <div id="payment-block">
+                        <label id="payment-form-label">Date d'expiration :</label>
+                        <select id="payment-form-select">
+                        {% for i in 1..12 %}
+                        <option value="{% if i|length > 1 %}{{ i }}{% else %}0{{ i }}{% endif %}">{% if i|length > 1 %}{{ i }}{% else %}0{{ i }}{% endif %}</option>
+                        {% endfor %}
+                        </select>
+                        <select id="payment-form-select">
+                            {% for i in 0..9 %}
+                            <option value="{{ "now"|date("Y") + i }}">{{ "now"|date("Y") + i }}</option>
+                            {% endfor %}
+                        </select>
+                        <label id="payment-form-label">Cryptogramme visuel :</label><input id="payment-form-crypto" type="text" required /><p id="payment-form-p">3 derniers chiffres au dos de votre carte, à droite de la signature</p>
+                        </div>
+
+                        <!-- Used to display Element errors. -->
+                        <div id="card-errors" role="alert"></div>
+                        
+                        <br>
+                                     
+                        <a href="{{ path('livraison') }}" class="btn btn-primary" id="payment-form-retour" >retour à la livraison</a>
+                        
+                        
+                        <button id="payment-form-submit" type="submit" href="{{ path('validationCommande',{ id: commande.id }) }}" class="btn btn-success">Payer</button>
+                        
+                        </form>

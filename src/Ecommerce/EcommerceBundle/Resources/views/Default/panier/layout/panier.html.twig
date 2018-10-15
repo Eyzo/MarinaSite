@@ -1,0 +1,92 @@
+{% extends "::layout/layout.html.twig" %}
+
+{% set totalHT = 0 %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+            
+            <div class="box col-12 col-12-medium imp-medium">
+
+                {% for flash in app.session.flashbag.get('success') %}
+                <div class="alert alert-success">{{ flash }}</div>
+                {% endfor %}
+
+                <h2>Votre panier</h2>
+
+                  <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Références</th>
+                            <th>Quantité</th>
+                            <th>Poids</th>
+                            <th>Prix unitaire</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if produits|length == 0 %}
+                        <tr>
+                            <td colspan="6"><center>Aucun article dans votre panier</center></td>
+                        </tr>
+                        {% endif %}
+
+                        {% for produit in produits %}
+                        <tr>
+                        <td><img src="{{ asset('uploads/images/'~ produit.image.path) }}" alt="{{ produit.image.alt }}" style="width: 100px;border-radius: 5px;"></td>
+                        <form action="{{ path('ajouter', { 'id' : produit.id }) }}" method="get">
+                        <td>{{ produit.nom }}</td>
+                        <td>
+                            <select style="padding: 10px;" name="qte" class="span1" onChange="this.form.submit()">
+                                {% for i in 1..10 %}
+                                    <option value="{{ i }}" {% if i == panier[produit.id]['quantité'] %} selected="selected" {% endif %}>{{ i }}</option>
+                                {% endfor %}
+                            </select>&nbsp;
+                            <a href="{{ path('supprimer',{id:produit.id }) }}"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                        <td>
+                            <select name="poids" style="padding: 10px;" onChange="this.form.submit()" class="span1" style="width: 90px;">
+                                {% set PoidsListe = listePoids(produit.id) %}
+                                {% for Poids in PoidsListe %}
+                                {% if loop.last %}
+                                    <option value="{{ Poids }}" {% if panier[produit.id]['poids'] == Poids %}selected{% endif %}>{{ Poids }} g - complet</option>
+                                {% else %}
+                                    <option value="{{ Poids }}" {% if panier[produit.id]['poids'] == Poids %}selected{% endif %}>{{ Poids }} g</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                        </td>
+                        
+                        {% set prix = produit.prix * (panier[produit.id]['poids'] * 1/1000) %}
+                        <td>{{ prix|round(2,'floor') }} €</td>
+
+                        {% set prixtotale = prix * panier[produit.id]['quantité'] %}
+                        <td>{{ prixtotale|round(2,'floor') }} €</td>
+                    </form>
+                        </tr>
+
+                        {% set totalHT = totalHT + prixtotale|round(2,'floor') %}
+
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            
+            {% if produits|length != 0 %}
+            <div class="col-12" style="display: flex;flex-direction: row-reverse;">
+                <p class="totalHT">Total Hors livraison : {{ totalHT }}€</p>
+            </div>
+            <div class="col-12">
+            <a href="{{ path('livraison') }}" class="button pull-right">Valider mon panier</a>
+            {% endif %}
+
+            <a href="{{ path('produits') }}" class="button alt">Continuer mes achats</a>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+    {% endblock %}

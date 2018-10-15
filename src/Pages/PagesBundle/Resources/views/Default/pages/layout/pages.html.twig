@@ -1,0 +1,14 @@
+{% extends "::layout/layout.html.twig" %}
+
+
+{% block body %}
+<div class="box col-12 col-12-medium imp-medium">
+        
+        
+            <h1>{{ page.titre }}</h1>
+            {% autoescape false %}
+             {{ page.contenu }}
+            {% endautoescape %}
+      
+</div>
+{% endblock %}

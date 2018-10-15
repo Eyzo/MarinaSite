@@ -1,0 +1,160 @@
+@media (min-width: 1000px)
+{
+
+	#payment-menu
+	{
+		width: 50%;
+	}
+
+	#payment-form-label
+	{
+		display:inline-block; 
+		width: 30%;
+	}
+
+	#payment-form-text
+	{
+		width: 65%;
+	}
+
+	#card-expiry
+	{
+		width: 65%;
+		display: inline-block;
+	}
+
+	#card-cvc
+	{
+		width: 30%;
+		display: inline-block;
+	}
+
+	#card-element
+	{
+		width: 65%;
+		display: inline-block;
+	}
+}
+
+@media (max-width: 500px)
+{
+	#payment-form-submit
+	{
+		padding: 20px;
+	}
+}
+
+@media (max-width: 1000px)
+{
+	#payment-form-label
+	{
+		margin:15px auto auto auto;
+		width: 100%;
+	}
+
+	#payment-form-text
+	{
+		padding: 5px;
+		width: 100%;
+	}
+
+	#card-expiry
+	{
+		width: 100%;
+	}
+
+	#card-cvc
+	{
+		display: inline-block;
+		width: 50%;
+	}
+
+	#card-element
+	{
+		width: 100%;
+	}
+}
+
+
+
+#payment-form-text
+{
+	display: inline-block;
+	padding: 0px;
+	margin-top: 15px;
+}
+
+#card-element
+{
+	border: 1px solid #cccccc;
+	padding: 4px 6px;
+}
+
+#card-cvc
+{
+	border: 1px solid #cccccc;
+	padding: 4px 6px;
+}
+
+#card-expiry
+{
+	border: 1px solid #cccccc;
+	padding: 4px 6px;
+}
+
+#payment-menu
+{
+	
+	margin: 50px auto auto auto;
+	display: flex;
+	flex-direction: column;
+	padding:15px; 
+	border:1px solid black;
+	border-radius: 5px;
+}
+
+#payment-text
+{
+ text-align: center;
+ margin-bottom: 5px;
+}
+
+#payment-block
+{
+	width: 100%;
+}
+
+
+
+
+
+#payment-form-select
+{
+	width: 30%;
+}
+
+#payment-form-p
+{
+	font-size:small;
+	display:inline-block;
+	width: 30%;
+	line-height: 12px;
+	margin-left: 5px;
+}
+
+#payment-form-submit
+{
+	width:40%; 
+	float:right;
+}
+
+#payment-form-retour
+{
+	 padding: 4px 0px; 
+	 width:40%;
+}
+
+#payment-form-crypto
+{
+	width: 30%;
+}

@@ -1,0 +1,10 @@
+{% extends "::layout/layout.html.twig" %}
+
+
+    {% block body %}
+
+<form action="{{ path('test') }}" method="post">
+    formulaire:
+    {{ form(form) }}
+</form>
+    {% endblock %}

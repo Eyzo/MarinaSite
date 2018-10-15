@@ -1,0 +1,20 @@
+{% extends '::layout/layout-administration.html.twig' %}
+
+{% block body %}
+    <h1>liste des Adresses de {{ entity.username }}</h1>
+
+            {% for adresse in entity.adresses %}
+            <div class="col-4">
+                <h4>Adresses {{ loop.index }}:</h4>
+                <p>{{ adresse.adresse }} , {{ adresse.cp }} {{ adresse.ville }} - {{ adresse.pays }}</p>
+                {{ adresse.nom }} {{ adresse.prenom }}
+            </div>
+            <br>
+            {% endfor %}
+        
+
+        <a  style="margin-top: 10px;float: left;" class="button alt" href="{{ path('admin_utilisateurs') }}">
+            Retour à la liste des pages
+        </a>
+
+{% endblock %}

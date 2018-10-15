@@ -1,0 +1,22 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+
+
+
+
+    
+        <h2>Mes informations</h2>
+        <h4>Modifier mes informations</h4>
+        <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+        {{ form_widget(form) }}
+        
+            <input style="margin-top:10px;display: flex;" class="btn btn-primary" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+        
+        </form> 
+        
+            
+    
+
+
+

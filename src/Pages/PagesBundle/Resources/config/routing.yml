@@ -1,0 +1,16 @@
+pages_adminPages:
+    resource: "@PagesBundle/Resources/config/routing/routingAdmin.yml"
+    prefix:   /admin/pages/
+
+routing_contact:
+    resource: "@PagesBundle/Resources/config/routing/routingContact.yml"
+    prefix:    /contact/
+
+routing_carte:
+    resource: "@PagesBundle/Resources/config/routing/routingCarte.yml"
+    prefix:    /carte/
+
+page:
+    path:     /page/{id}
+    defaults: { _controller: PagesBundle:Pages:pages }
+

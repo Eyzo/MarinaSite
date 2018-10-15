@@ -1,0 +1,50 @@
+{% extends "::layout/layout.html.twig" %}
+
+{% block titre %}liste des produits{% endblock %}
+
+
+{% block description %}{% endblock %}
+
+
+	{% block body %}
+
+<div class="col-12 col-12-medium imp-medium">
+    {% for type,content in app.session.getflashbag.get('success') %}
+    <div class="alert alert-success">{{ content }}</div>
+    {% endfor %}
+
+            {% if produits is empty %}
+            <div class="box">
+            <h4>Désolé mais il n'y a pas de produits</h4>
+            </div>
+            {% else %}
+             <div class="row">
+            
+            {% for row in produits|batch(3) %}
+            
+            <div class="card-deck">
+            {% for produit in row %}
+                <!-- Content -->
+                <div class="card-box card">
+                    <img class="card-img-top" src="{{ asset('uploads/images/'~ produit.image.path) }}" alt="{{ produit.image.alt }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ produit.nom }}</h5>
+                        <p class="card-text">{{ produit.prix }} €/kg</p>
+                    </div>
+                    <div class="card-footer">
+                        <a class="button alt" href="{{ path('presentation',{id:produit.id}) }}">Plus d'infos</a>
+                        {% if panier[produit.id] is not defined %}
+                            <a id="ajouter" class="button" href="{{ path('ajouter',{id: produit.id }) }}">Ajouter au panier</a>
+                        {% else %}
+                            <a id="ajouter" class="button" href="{{ path('panier') }}">Déja dans le panier</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        {% endfor %}
+        </div>
+            <!--endif de produits-->
+            {% endif %}
+</div>
+{% endblock %}

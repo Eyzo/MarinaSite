@@ -1,0 +1,403 @@
+
+#search
+{
+	display: inline-block;
+}
+
+#search button
+{
+    background: #519a65; 
+}
+
+#search input
+{
+	border-radius: 5px;
+}
+
+#nav-liste
+{
+	display: inline-block;
+}
+
+.card-deck
+{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.form-image
+{
+    width: 100%;
+    max-width: 720px;
+    border-radius: 20px;
+}
+
+@media (max-width: 540px) 
+{
+
+    .card
+    {
+    	width: 100%;
+    }
+
+    .button
+    {
+       display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .btn
+    {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+
+    iframe
+    {
+        height: 200px;
+    }
+
+    .livraison-form
+    {
+        width:100%;
+    }
+
+    .form-image
+    {
+        height: 120px;
+    }
+
+    .validate-col
+    {
+        width: 100%;
+    }
+
+
+}
+
+@media (min-width:540px) and (max-width: 940px)
+{
+    .card-box
+    {
+        min-width: 45%;
+    }
+
+    .button
+    {
+       font-size: 0.9em; 
+    }
+
+    #header
+    {
+        font-size: 0.85em;
+    }
+}
+
+.ck.ck-list__item .ck-button .ck-button__label 
+{
+    line-height: calc(1.2*var(--ck-line-height-base)*var(--ck-font-size-base));
+    color: black;
+}
+
+@media (min-width: 540px ) 
+{
+	
+    .card
+    {
+    	display: flex;
+    	flex-wrap: nowrap;
+    	flex-direction: column;
+    	justify-content: space-between;
+    	margin:15px;
+    	width: 30%;
+    }
+
+    .livraison-form
+    {
+        width: 50%;
+    }
+
+    .validate-col
+    {
+        width: 25%;
+    }
+
+}
+
+@media (max-width: 800px)
+{
+	table,thead,tbody,tr,td,th
+	{
+		display: block;
+	}
+
+	table td
+	{
+		    padding: 0.5em 1em 0.5em 150px;
+		    position: relative;
+		    background-color:#FFF;
+		    margin-top: -1px;
+	}
+
+	td:nth-child(odd)
+	{
+		background-color:#eee;
+	}
+
+	td::before 
+	{
+		content: attr(data-label);
+		position: absolute;
+		top: 0;
+		left:0;
+		width: 130px;
+		bottom: 0;
+		background-color:#252223;
+		color: #FFF;
+		display: flex;
+		align-items: center;
+		padding: 10px;
+		font-weight: bold;
+		margin:1px;
+	}
+
+	tr
+	{
+		margin-bottom: 1rem;
+	}
+
+	thead
+	{
+		display: none;
+	}
+}
+
+a
+{
+text-decoration: none;
+}
+	
+#ajouter
+{
+	float: right;
+}
+
+
+
+.card-img-top
+{
+	width: 100%;
+	height: 250px;
+}
+
+#header
+{
+	padding-bottom: 0px;
+}
+
+.presentation-img
+{
+	width: 100%;
+	height: 300px;
+	border-radius: 20px;
+}
+
+.presentation-categ
+{
+	font-style: italic;
+}
+
+.alert-success
+{
+	 color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert 
+{
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+#nav
+{
+    background-color: #e3e3e3;
+    margin: 0px;
+    padding: 15px;
+}
+
+#banner
+{
+ margin-top: 0px;
+}
+
+#header h1
+{
+	padding-bottom: 40px;
+}
+
+.totalHT
+{
+	font-weight: bold;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.fixNavigation
+{
+ z-index: 9999;
+ position: fixed;
+ top: 0;
+ width: 100%;
+}
+
+.button-success
+{
+	-webkit-appearance: none;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+    background: #28a745;
+    color: #fff !important;
+    font-weight: 700;
+    outline: 0;
+    padding: 10px 25px;
+    text-align: center;
+    -moz-transition: background-color .25s ease-in-out;
+    -webkit-transition: background-color .25s ease-in-out;
+    -ms-transition: background-color .25s ease-in-out;
+    transition: background-color .25s ease-in-out;
+    width: 150px;
+    font-size: 15px;
+    height: 45px;
+}
+
+.button-info
+{
+	-webkit-appearance: none;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+    background: #17a2b8;
+    color: #fff !important;
+    font-weight: 700;
+    outline: 0;
+    padding: 10px 25px;
+    text-align: center;
+    -moz-transition: background-color .25s ease-in-out;
+    -webkit-transition: background-color .25s ease-in-out;
+    -ms-transition: background-color .25s ease-in-out;
+    transition: background-color .25s ease-in-out;
+    width: 150px;
+    font-size: 15px;
+    height: 45px;
+}
+
+.button-danger
+{
+	-webkit-appearance: none;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+    background:#dc3545;
+    color: #fff !important;
+    font-weight: 700;
+    outline: 0;
+    padding: 10px 25px;
+    text-align: center;
+    -moz-transition: background-color .25s ease-in-out;
+    -webkit-transition: background-color .25s ease-in-out;
+    -ms-transition: background-color .25s ease-in-out;
+    transition: background-color .25s ease-in-out;
+    width: 150px;
+    font-size: 15px;
+    height: 45px;
+    margin-top: 10px;
+}
+
+.ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar, .ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners 
+{
+    border-radius: var(--ck-border-radius);
+    background-color: brown;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.card-box {
+    background: #ffffff;
+    border-bottom: solid 1px #ccc;
+    padding:10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+#main
+{
+	background-image: url('../img/fond.jpg');
+}
+
+.box
+{
+	border-radius: 10px;
+}
+
+#nav > ul > li.current > a {
+    background: #519a65;
+    color: #fff !important;
+    font-weight: 700;
+}
+
+#nav
+{
+    background-image: url('../img/nav-background.jpg');
+}
+
+input[type="button"], input[type="submit"], input[type="reset"], button, .button {
+    -webkit-appearance: none;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+    background: #519a65;
+    color: #fff !important;
+    font-weight: 700;
+    outline: 0;
+    padding: 0.65em 1.5em 0.65em 1.5em;
+    text-align: center;
+    -moz-transition: background-color .25s ease-in-out;
+    -webkit-transition: background-color .25s ease-in-out;
+    -ms-transition: background-color .25s ease-in-out;
+    transition: background-color .25s ease-in-out;
+}
+
+.info
+{
+    margin-bottom: 0px;
+}
+
+.day
+{
+    width:80%;
+    margin:auto;
+    margin-top: 20px;
+}

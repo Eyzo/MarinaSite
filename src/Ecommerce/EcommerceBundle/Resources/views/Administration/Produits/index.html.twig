@@ -1,0 +1,49 @@
+{% extends '::layout/layout-administration.html.twig' %}
+
+{% block body -%}
+    <h1>Produits list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Disponible</th>
+                <th>Poids</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><img style="width: 100px;" src="{{ asset('uploads/images/' ~ entity.image.path) }}"></td>
+                <td>{{ entity.nom }}</td>
+                <td>{{ entity.description }}</td>
+                <td>{{ entity.prix }}</td>
+                <td>{{ entity.disponible }}</td>
+                <td>{{ entity.poids }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a style="margin-bottom: 10px;" class="button-info" href="{{ path('adminProduits_show', { 'id': entity.id }) }}">regarder</a>
+                    </li>
+                    <li>
+                        <a class="button-success" href="{{ path('adminProduits_edit', { 'id': entity.id }) }}">editer</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a class="button" href="{{ path('adminProduits_new') }}">
+                Creer un nouveau produit
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

@@ -1,0 +1,15 @@
+{% extends '::layout/layout-administration.html.twig' %}
+
+{% block body -%}
+    <h1>Produits creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a style="margin-top: 10px;" class="button alt" href="{{ path('adminProduits') }}">
+            Retour a la liste des produits
+        </a>
+    </li>
+</ul>
+{% endblock %}

@@ -1,0 +1,8 @@
+utilisateurs_facture_routing:
+    resource: "@UtilisateursBundle/Resources/config/routing/routingFacture.yml"
+    prefix:   /
+
+utilisateurs_admin_routing:
+    resource: "@UtilisateursBundle/Resources/config/routing/routingUtilisateursAdmin.yml"
+    prefix:   /admin/utilisateurs
+

@@ -1,0 +1,7 @@
+contactPages:
+  path:     /
+  defaults: { _controller: "PagesBundle:Contact:index" }
+
+contactTraitement:
+  path:    /traitement
+  defaults: { _controller: "PagesBundle:Contact:FormTraitement" }

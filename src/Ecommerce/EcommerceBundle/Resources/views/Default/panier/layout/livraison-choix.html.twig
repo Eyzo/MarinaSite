@@ -1,0 +1,22 @@
+{% extends "::layout/layout.html.twig" %}
+
+
+    {% block body %}
+
+<div class="box col-12 col-12-medium imp-medium">
+    <h2 style="text-align: center;margin-bottom:15px;">Choix de reception</h2>
+    
+        
+        
+        
+    <form method="POST" action="{{ path('validation') }}">
+        
+        <center><input class="form-image" type="image" src="{{ asset('img/reservation.jpg') }}" alt="reservation" name="reservation" style="margin-bottom: 20px;"></center>
+
+        <center><input class="form-image" type="image" src="{{ asset('img/livraison.jpg') }}" alt="livraison" name="livraison"></center>
+
+    </form>
+    
+</div>
+
+    {% endblock %}

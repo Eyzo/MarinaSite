@@ -1,0 +1,24 @@
+ecommerce_admin_categories:
+    resource: "@EcommerceBundle/Resources/config/routing/routingCategoriesAdmin.yml"
+    prefix:   /admin/categories
+
+ecommerce_adminProduits:
+    resource: "@EcommerceBundle/Resources/config/routing/routingProduitsAdmin.yml"
+    prefix:   /admin/produits
+
+routingPanier:
+    resource: "@EcommerceBundle/Resources/config/routing/routingPanier.yml"
+    prefix: /panier
+
+
+routingProduits:
+    resource: "@EcommerceBundle/Resources/config/routing/routingProduits.yml"
+    prefix: /
+
+routingCommande:
+    resource: "@EcommerceBundle/Resources/config/routing/routingCommande.yml"
+    prefix: /commande
+
+routing_adminCommande:
+    resource: "@EcommerceBundle/Resources/config/routing/routingCommandeAdmin.yml"
+    prefix: /admin/commandes

@@ -1,0 +1,16 @@
+{% extends '::layout/layout-administration.html.twig' %}
+
+{% block body -%}
+    <h1>Produits edit</h1>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a class="button alt" style="float: left;margin-top: 10px;" href="{{ path('adminProduits') }}">
+            Retour a la liste des produits
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

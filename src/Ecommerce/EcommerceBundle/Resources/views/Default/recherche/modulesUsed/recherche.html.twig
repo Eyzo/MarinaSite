@@ -1,0 +1,5 @@
+<form action="{{ path('rechercheProduits') }}" method="post" id="search">
+	{{ form_widget(form.recherche) }}
+	<button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+	{{ form_widget(form) }}
+</form>

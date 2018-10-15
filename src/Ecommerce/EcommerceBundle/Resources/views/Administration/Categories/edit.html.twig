@@ -1,0 +1,16 @@
+{% extends '::layout/layout-administration.html.twig' %}
+
+{% block body -%}
+    <h1>Categories edit</h1>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a class="button alt" style="margin-top: 10px;float: left;" href="{{ path('admin_categories') }}">
+            Retour a la liste des catégories
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

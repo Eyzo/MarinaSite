@@ -1,0 +1,71 @@
+{% extends "::layout/layout.html.twig" %}
+
+{% block titre %} {{ produit.nom }} {% endblock %}
+
+{% block description %} {{ produit.description }} {% endblock %}
+
+
+{% block body %}
+
+<div class="box col-12 col-12-medium imp-medium">
+    {% for type,content in app.session.getflashbag.get('success') %}
+        <div class="alert alert-success">{{ content }}</div>
+    {% endfor %}
+
+
+    <div class="row">
+        <div class="col-6 col-12-medium">
+            <img class="presentation-img" src="{{ asset('uploads/images/' ~ produit.image.path) }}" alt="{{ produit.image.alt }}">
+        </div>
+
+        <div class="col-6 col-12-medium">
+            <h2>{{ produit.nom }}</h2>
+            <p class="presentation-categ text-muted">{{ produit.categorie.nom }}</p>
+            <p>{{ produit.description }}</p>
+            <h4>{{ produit.prix }} €/kg</h4>
+
+             {% if panier[produit.id] is not defined %}
+            <form style="margin-top: 10px;" action="{{ path('ajouter',{ id:produit.id }) }}" method="get">
+        
+                <div class="row">
+
+                <div class="col-6">
+                <label>Quantité :</label>
+                <select class="form-control" name="qte">
+                    {% for i in 1..10 %}
+                    <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+                </div>
+
+                {% set PoidsListe = listePoids(produit.id) %}
+                    <div class="col-6">
+                        <label>Poids :</label>
+                        <select class="form-control" name="poids">
+                        {% for Poids in PoidsListe %}
+                            {% if loop.last %}
+                            <option value="{{ Poids }}">{{ Poids }} g - complet</option>
+                            {% else %}
+                            <option value="{{ Poids }}">{{ Poids }} g</option>
+                            {% endif %}
+                        {% endfor %}
+                        </select>
+                    </div>
+
+
+
+
+
+                </div>                          
+
+                
+                    <button style="padding: 15px;margin-top: 15px;" class="button">Ajouter au panier</button>
+                
+            </form>
+            {% else %}
+            <a style="padding:15px;margin-top: 15px;" class="button" href="{{ path('panier') }}">Déja dans le panier</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

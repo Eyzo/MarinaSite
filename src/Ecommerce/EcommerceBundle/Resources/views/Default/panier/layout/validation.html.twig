@@ -1,0 +1,252 @@
+{% extends "::layout/layout.html.twig" %}
+
+    {% block body %}
+
+    <div class="container">
+        <div class="row">
+            
+                <div class="box col-12 col-12-medium imp-medium">
+
+                    <h2>Valider mon parnier</h2>
+
+                      <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Références</th>
+                                <th>Quantité</th>
+                                <th>Poids</th>
+                                <th>Prix unitaire</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for produit in commande.commande.produit %}
+                            <tr>
+                            <td><img src="{{ asset('uploads/images/' ~ produit.image.path) }}" alt="{{ produit.image.alt }}" style="width: 100px;"></td>
+                            <td>{{ produit.reference }}</td>
+                            <td>
+                               {{ produit.quantite }}
+                            </td>
+                            <td>{{ produit.poids }} g</td>
+                            <td>{{ produit.prix }} €</td>
+                            <td>{{ produit.prixTotale }} €</td>
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                <div class="col-12">
+                    <div class="row">
+                        <div class="validate-col">
+                        
+                            <dt><h4>Adresse de livraison</h4></dt>
+                            <dt>{{ commande.commande.livraison.prenom }} {{ commande.commande.livraison.nom }}</dt>
+                            <dt>{{ commande.commande.livraison.adresse }}</dt>
+                            <dt>{{ commande.commande.livraison.cp }} {{ commande.commande.livraison.ville}} - {{ commande.commande.livraison.pays }}</dt>
+                        
+                        </div>
+
+                        <div class="validate-col">
+                        
+                            <dt><h4>Adresse de facturation</h4></dt>
+                            <dt>{{ commande.commande.facturation.prenom }} {{ commande.commande.facturation.nom }}</dt>
+                            <dt>{{ commande.commande.facturation.adresse }}</dt>
+                            <dt>{{ commande.commande.facturation.cp }} {{ commande.commande.facturation.ville}} - {{ commande.commande.facturation.pays }}</dt>
+                        
+                        </div>
+                        <div class="validate-col">
+                            <dt><h4>Type de commande :</h4></dt><dd>{{ commande.commande.type }}</dd>
+                            <dt><h4>Total Hors livraison :</h4></dt><dd>{{ commande.commande.prixHT }}€</dd>
+                        </div>
+                        <div class="validate-col">
+                        
+                            
+
+                            {% if commande.commande.reception == 'reservation' %}
+                            <dt><h4>Remise de 10% :</h4></dt><dd>{{ commande.commande.prixlivraison }} €</dd>
+                            {% endif %}
+                            {% if commande.commande.reception == 'livraison' %}
+                            <dt><h4>Transport :</h4></dt><dd>{{ commande.commande.prixlivraison }} €</dd>
+                            {% endif %}
+                    
+                            <dt><h4>Total :</h4><dt><dd>{{ commande.commande.Totale }} €</dd>
+                        
+                        </div>
+
+                    </div>
+                </div>
+    
+                    
+                   
+                        
+                    
+
+
+                        <!--Paiement Menu-->
+                        <div class="col-6" id="payment-menu">
+                        <h3 id="payment-text" >Paiement sécurisé par carte bancaire</h3><img src="{{ asset('img/icon_paiement.jpg') }}"  style="margin:auto;width: 150px;height: 30px;" alt="all-card-type">
+
+                        
+                        <form action="{{ path('validationCommande',{ id: commande.id }) }}" method="POST" id="payment-form" />
+                        
+                        <div id="payment-block">
+
+                        <label id="payment-form-label" >Titulaire de la carte :</label>
+                        <input id="payment-form-text" type="text" placeholder=" votre nom et prenom..." name="nom" required />
+
+                        </div>
+                        
+                        <div id="payment-block">
+
+                        <label id="payment-form-label" for="card-element">Numéro de carte :</label>
+                        <div id="card-element">
+                            <!--Generation par stripe de l'input card Number-->
+                        </div>
+
+                        </div>
+
+                        <div id="payment-block">
+
+                        <label id="payment-form-label" for="card-expiry">Date d'expiration :</label>
+                        <div id="card-expiry">
+                            <!--Generation par stripe de l'input card Expiry-->
+                        </div>
+                        
+                        <label id="payment-form-label" for="card-cvc">Cryptogramme visuel :</label>
+                        <div id="card-cvc">
+                            <!--Generation par stripe de l'input card Cvc-->
+                        </div>
+                        <p id="payment-form-p">3 derniers chiffres au dos de votre carte, à droite de la signature</p>
+
+                        </div>
+
+                        <!-- Used to display Element errors. -->
+                        <div id="card-errors" role="alert" class="alert alert-danger"></div>
+                        
+                        <br>
+
+                        <input type="hidden" id="email" name="email" value="{{ user.getEmail() }}">
+
+                        <input type="hidden" id="adresse" name="adresse" value="{{ commande.commande.facturation.adresse }}">
+
+                        <input type="hidden" id="ville" name="ville" value="{{ commande.commande.facturation.ville }}">
+
+                        <input type="hidden" id="cp" name="cp" value="{{ commande.commande.facturation.cp }}">
+
+                        <input type="hidden" id="pays" name="pays" value="{{ commande.commande.facturation.pays }}">
+
+                        <input type="hidden" id="total" name="total" value="{{ commande.commande.Totale }}">
+                                     
+                        <a href="{{ path('livraison') }}" class="button alt" id="payment-form-retour" >retour à la livraison</a>
+                        
+                        
+                        <button id="payment-form-submit" type="submit" href="{{ path('validationCommande',{ id: commande.id }) }}" class="button">Payer</button>
+                          
+                        </form>
+                        
+                        </div>
+                        <!--fin Paiement Menu-->
+
+                            
+    
+                    
+            
+         </div>
+    </div>
+</div>
+
+    {% endblock %}
+
+    {% block javascripts %}
+<script type="text/javascript">
+jQuery(document).ready(function($)
+{
+
+    var stripe = Stripe('pk_test_POX1q5zRKYatVvrjyC2cBHAi');
+    var elements = stripe.elements();
+
+    $('#card-errors').removeAttr("style").hide();
+
+    // variable contenant css
+    var style = 
+    {
+        base: 
+        {
+            // css du skin de base
+            fontSize: '16px',
+            color: "#32325d",
+        }
+    };
+
+    // creation des elements du formulaires contenant données bancaire.
+    var card = elements.create('cardNumber', {style: style});
+    card.mount('#card-element');
+
+    var card = elements.create('cardExpiry',{style : style});
+    card.mount('#card-expiry');
+
+    var card = elements.create('cardCvc',{style : style});
+    card.mount('#card-cvc');
+
+
+     //Insére l'id du token dans le formulaire si il a était envoyé sur le serveur stripe
+    function stripeTokenHandler(token) 
+    {
+
+        var form = document.getElementById('payment-form');
+        var hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'stripeToken');
+        hiddenInput.setAttribute('value', token.id);
+        form.appendChild(hiddenInput);
+
+        form.submit();
+    }
+
+    //stock le formulaire dans une variable
+    var $form = $('#payment-form');
+
+    // Créer un token ou retourne une erreur quand le formualire est validé
+    $form.submit(function(e) 
+    {
+        e.preventDefault();
+
+        $form.find('#payment-form-submit').attr('disabled',true);
+
+        //données utilisateurs
+        var tokenData = 
+        {
+        name:$('#payment-form-text').val(),
+        address_line1:$('#adresse').val(),
+        address_city:$('#ville').val(),
+        address_zip:$('#cp').val(),
+        address_country:$('#pays').val()
+        };
+
+        stripe.createToken(card,tokenData).then(function(result) 
+        {
+
+
+            if (result.error) 
+            {
+                // Informe l'utilisateur qu'il y a eu une erreur
+                $('#card-errors').show();
+                var errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+            } 
+            else 
+            {
+                // Envoie le token sur le serveur.
+                stripeTokenHandler(result.token);
+            }
+
+        });
+    });
+
+})
+</script>
+    {% endblock %}

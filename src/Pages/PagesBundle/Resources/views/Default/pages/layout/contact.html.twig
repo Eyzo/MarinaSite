@@ -1,0 +1,15 @@
+{% extends "::layout/layout.html.twig" %}
+
+
+{% block body %}
+    <div class="box col-12 col-12-medium imp-medium">
+        {% for flash in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">{{ flash }}</div>
+        {% endfor %}
+
+        <h2 style="margin-bottom: 10px;">Nous Contacter</h2>
+
+        {{ form(form) }}
+
+    </div>
+{% endblock %}
