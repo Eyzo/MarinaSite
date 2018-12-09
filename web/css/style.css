@@ -158,3 +158,9 @@
 {
 	width: 30%;
 }
+
+.alert-primary {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}

@@ -57,7 +57,7 @@
         <td width="100">{{ facture.commande.prixHT }} €</td>
     </tr>
     <tr>
-        <td width="130">Prix Transport :</td>
+        <td width="130">{% if facture.commande.type == 'reservation' %}remise de 10% : {% else %}Prix Transport :{% endif %}</td>
         <td width="100">{{ facture.commande.prixlivraison }} €</td>
     </tr>
     <tr>

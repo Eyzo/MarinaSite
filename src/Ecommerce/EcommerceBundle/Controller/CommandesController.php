@@ -153,14 +153,14 @@ class CommandesController extends Controller
     * cette methode remplace l'api banque
     */
     public function validationCommandeAction($id)
-    {
-    
+    {   
+
        \Stripe\Stripe::setApiKey("sk_test_flqOo6x1iR1OwuevXv1RfUYI");
 
        
         $token = $this->getRequest()->request->get('stripeToken');
 
-        $amount = floatval($this->getRequest()->request->get('total')) * 100;
+        $amount = $this->getRequest()->request->get('total');
 
         $email = $this->getRequest()->request->get('email');
 
@@ -177,9 +177,10 @@ class CommandesController extends Controller
             'customer' => $customer->id,
         ]);
     
-         
+          
         $em = $this->getDoctrine()->getManager();
         $commande = $em->getRepository('EcommerceBundle:Commandes')->find($id);
+        
         
         if (!$commande || $commande->getValider() == 1) 
         {
@@ -197,7 +198,20 @@ class CommandesController extends Controller
 
         $session->getFlashBag()->add('success','Votre commande a bien était validée avec succés');
 
-        //ici le mail de validation
+        if ($commande->getCommande()['type'] == 'reservation') 
+        {
+            //ici le mail de validation
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Validation de votre commande')
+            ->setFrom(array('duhameltonysmtp@gmail.com' => 'FromagerieChristophe'))
+            ->setTo($commande->getUtilisateur()->getEmailCanonical())
+            ->setCharset('utf-8')
+            ->setContentType('text/html')
+            ->setBody($this->renderView('EcommerceBundle:Default:Mail/validationMailReservation.html.twig',array('utilisateur' => $commande->getUtilisateur())));
+        }
+        else
+        {
+            //ici le mail de validation
         $message = \Swift_Message::newInstance()
             ->setSubject('Validation de votre commande')
             ->setFrom(array('duhameltonysmtp@gmail.com' => 'FromagerieChristophe'))
@@ -205,12 +219,11 @@ class CommandesController extends Controller
             ->setCharset('utf-8')
             ->setContentType('text/html')
             ->setBody($this->renderView('EcommerceBundle:Default:Mail/validationMail.html.twig',array('utilisateur' => $commande->getUtilisateur())));
-
+        }
+        
         $this->get('mailer')->send($message);
 
-        return $this->redirect($this->generateUrl('facture'));
-        
-        
+        return $this->redirect($this->generateUrl('facture')); 
     }
 
    

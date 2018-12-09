@@ -39,8 +39,6 @@ class Utilisateurs extends BaseUser
     */
     private $adresses;
 
-    
-
     /**
      * Add commandes
      *

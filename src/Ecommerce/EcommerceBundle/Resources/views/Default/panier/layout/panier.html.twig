@@ -12,6 +12,10 @@
                 {% for flash in app.session.flashbag.get('success') %}
                 <div class="alert alert-success">{{ flash }}</div>
                 {% endfor %}
+				
+				<div class="alert alert-primary" role="alert">
+				Nous Livrons exclusivement en france pour une commande a l'internationale veuillez nous contacter dans la rubrique <a href="{{ path('contactPages') }}">Contact</a>
+				</div>
 
                 <h2>Votre panier</h2>
 
